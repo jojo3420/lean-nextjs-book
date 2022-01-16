@@ -22,7 +22,6 @@ function Pagination({ login, page, endPage }) {
 
   return (
     <div className='pagination'>
-      <div>{endPage}</div>
       <button onClick={() => onClickPage(page - 1)} disabled={page === 1}>Prev</button>
       <button onClick={() => onClickPage(page + 1)} disabled={page === endPage}>Next</button>
       <style jsx>{style}</style>
