@@ -18,10 +18,12 @@ const style = css`
 function GithubPage({ user, repositories, page, rows }) {
   if (!user) return <div>유저 정보가 없습니다.</div>
   return (
-    <div className="main-container">
+    <div className='main-container'>
       <Profile user={user} />
       <Repository user={user} repositories={repositories} page={page} rows={rows} />
       <Pagination login={user.login} page={page} endPage={Math.ceil(repositories.length / rows)} />
+
+
       <style jsx>{style}</style>
     </div>
   )
@@ -47,6 +49,7 @@ export const getServerSideProps = async ({ query }) => {
     // console.log({ response })
     // if (response.status == 200)
     //   props.repositories = response.data
+
   } catch (e) {
     console.error({ e })
     return { props: { ...props, e: e.message } }
