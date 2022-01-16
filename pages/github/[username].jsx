@@ -1,72 +1,29 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import css from 'styled-jsx/css'
-import { GoMail } from 'react-icons/go'
+
 import Repository from '../../components/Repository'
-import { userData, reposData } from '../../data'
+import { user, repositories } from '../../data'
 import Pagination from '../../components/Pagination'
+import Profile from '../../components/profile'
+import css from 'styled-jsx/css'
 
 const style = css`
-  .box {
-    width: 25%;
-    max-width: 272px;
-    margin-right: 26px;
+  .main-container {
+    display: flex;
+    padding: 20px;
   }
-
-  .profile-wrapper {
-    width: 100%;
-    border: 1px solid #e1e4e8;
-  }
-
-  .profile-wrapper, .profile-image {
-    display: block;
-    width: 100%
-  }
-
-  .username {
-    margin: 0;
-    padding: 16px 0 0 0;
-    font-size: 26px;
-  }
-
-  .login {
-    margin: 0;
-    font-size: 20px;
-  }
-
-  .bio {
-    margin: 0;
-    padding-top: 16px;
-    font-size: 14px;
-  }
-
 `
+
 
 function GithubPage({ user, repositories, page, rows }) {
   if (!user) return <div>유저 정보가 없습니다.</div>
-  const { login, bio, blog, email, avatar_url, created_at, company, name } = user
   return (
-    <>
-      <div className='box'>
-        <div className='profile-wrapper'>
-          <img
-            src={avatar_url}
-            alt={`${name} image`}
-            className='profile-wrapper'
-          />
-        </div>
-      </div>
-      <h2 className='username'>{name}</h2>
-      <p className='login'>{login}</p>
-      <p className='bio'>{bio}</p>
-      <p className='info'>
-        <GoMail size={16} />
-        <span className='email'>{email || 'NOT FOUND'}</span>
-      </p>
+    <div className="main-container">
+      <Profile user={user} />
       <Repository user={user} repositories={repositories} page={page} rows={rows} />
-      <Pagination login={login} page={page} endPage={Math.ceil(repositories.length / rows)} />
+      <Pagination login={user.login} page={page} endPage={Math.ceil(repositories.length / rows)} />
       <style jsx>{style}</style>
-    </>
+    </div>
   )
 
 }
@@ -77,7 +34,7 @@ export const getServerSideProps = async ({ query }) => {
   let { username, page } = query
   page = parseInt(page, 10)
   if (isNaN(page)) page = 1
-  const props = { user: userData, repositories: reposData, page, rows }
+  const props = { user, repositories, page, rows }
   // const url = `https://api.github.com/users/${username}`
   // const url2 = `${url}/repos?page=${props.page}&per_page=${props.rows}`
   try {

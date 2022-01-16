@@ -1,4 +1,4 @@
-const userData = {
+const user = {
   login: 'jojo3420',
   id: 19986514,
   node_id: 'MDQ6VXNlcjE5OTg2NTE0',
@@ -32,7 +32,7 @@ const userData = {
   created_at: '2016-06-17T02:51:31Z',
   updated_at: '2022-01-15T11:20:54Z',
 }
-const reposData = [
+const repositories = [
   {
     id: 237933460,
     node_id: 'MDEwOlJlcG9zaXRvcnkyMzc5MzM0NjA=',
@@ -7337,6 +7337,6 @@ const reposData = [
 ]
 
 export {
-  userData,
-  reposData,
+  user,
+  repositories,
 }
