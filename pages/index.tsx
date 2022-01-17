@@ -1,15 +1,16 @@
 import React from 'react'
 import { NextPage } from 'next'
+import styled from 'styled-components'
+
+const Container = styled.div`
+`;
 
 const Index: NextPage = (props) => {
 
   return (
-    <div>
-      <h1>Hello Typescript</h1>
-      <p>타입스크립트 설정한 프로젝트</p>
-      <div>
-      </div>
-    </div>
+    <Container>
+      <h1>hello world</h1>
+    </Container>
   )
 }
 
